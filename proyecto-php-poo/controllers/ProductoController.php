@@ -18,6 +18,18 @@ class productoController {
         require_once 'views/producto/gestion.php';
     }
 
+    public function ver() {
+        
+         Utils::isADmin();
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $producto = new Producto();
+            $producto->setId($id);
+            $product = $producto->getOne();
+        }   
+        require_once 'views/producto/ver.php';   
+    }
+
     public function crear() {
         Utils::isADmin();
         require_once 'views/producto/crear.php';
@@ -43,7 +55,7 @@ class productoController {
                 $producto->setCategoria_id($categoria);
 
                 //Guardar la imagen
-                if(isset($_FILES['imagen'])) {
+                if (isset($_FILES['imagen'])) {
                     $file = $_FILES['imagen'];
                     $filename = $file['name'];
                     $mimetype = $file['type'];
@@ -59,15 +71,15 @@ class productoController {
                         $producto->setImagen($filename);
                     }
                 }
-                
-                if(isset($_GET['id'])){
+
+                if (isset($_GET['id'])) {
                     $id = $_GET['id'];
                     $producto->setId($id);
                     $save = $producto->edit();
-                }else{
+                } else {
                     $save = $producto->save();
-                }               
-                
+                }
+
 
                 if ($save) {
                     $_SESSION['producto'] = "complete";
@@ -86,17 +98,19 @@ class productoController {
 
     public function editar() {
         Utils::isADmin();
-        $edit = true;
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
+            $edit = true;
+
             $producto = new Producto();
             $producto->setId($id);
+
             $pro = $producto->getOne();
+
+            require_once 'views/producto/crear.php';
         } else {
             header('Location:' . base_url . 'producto/gestion');
         }
-
-        require_once 'views/producto/crear.php';
     }
 
     public function eliminar() {

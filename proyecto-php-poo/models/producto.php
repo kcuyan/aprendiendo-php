@@ -107,6 +107,15 @@ class Producto {
         
     }
     
+    public function getAllCategory() {
+        $sql = "SELECT p.*, c.nombre AS 'catnombre' FROM productos p "
+                ."INNER JOIN categorias c ON c.id = p.categoria_id "
+                ."WHERE p.categoria_id={$this->getCategoria_id()} "
+                ."ORDER BY id DESC";
+        $productos = $this->db->query($sql);
+        return $productos;
+    }
+    
     public function save() {
         
         $sql = "INSERT INTO productos VALUES(NULL, '{$this->getCategoria_id()}','{$this->getNombre()}', '{$this->getDescripcion()}', {$this->getPrecio()}, {$this->getStock()}, NULL, CURDATE(), '{$this->getImagen()}')";
