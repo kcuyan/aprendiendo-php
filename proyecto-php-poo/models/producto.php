@@ -61,23 +61,23 @@ class Producto {
     }
 
     function setNombre($nombre) {
-        $this->nombre = $this->db->real_escape_string($nombre);;
+        $this->nombre = $this->db->real_escape_string($nombre);
     }
 
     function setDescripcion($descripcion) {
-        $this->descripcion = $this->db->real_escape_string($descripcion);;
+        $this->descripcion = $this->db->real_escape_string($descripcion);
     }
 
     function setPrecio($precio) {
-        $this->precio = $this->db->real_escape_string($precio);;
+        $this->precio = $this->db->real_escape_string($precio);
     }
 
     function setStock($stock) {
-        $this->stock = $this->db->real_escape_string($stock);;
+        $this->stock = $this->db->real_escape_string($stock);
     }
 
     function setOferta($oferta) {
-        $this->oferta = $this->db->real_escape_string($oferta);;
+        $this->oferta = $this->db->real_escape_string($oferta);
     }
 
     function setFecha($fecha) {
