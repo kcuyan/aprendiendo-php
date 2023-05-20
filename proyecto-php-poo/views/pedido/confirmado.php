@@ -11,15 +11,15 @@
         Numero de pedido: <?= $pedido->id ?> <br>
         Total a pagar: Q <?= $pedido->coste ?> <br>
         Productos: <br>
-        
-        <?php while ($producto = $productos->fetch_Object()): ?>
-            <table>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Unidades</th>
-                </tr>
+        <table>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Unidades</th>
+            </tr>
+            <?php while ($producto = $productos->fetch_Object()): ?>
+
                 <tr>
                     <td>
                         <?php if ($producto->imagen != null): ?>
@@ -32,8 +32,9 @@
                     <td><?= $producto->precio ?></td>
                     <td><?= $producto->unidades ?></td>
                 </tr>
-            </table>
-        <?php endwhile; ?>        
+
+            <?php endwhile; ?>    
+        </table>
     <?php endif; ?>
 
 <?php elseif (isset($_SESSION['pedido']) && $_SESSION['pedido'] != 'complete'): ?>
